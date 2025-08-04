@@ -779,14 +779,25 @@ const UploadPage = () => {
     <div className="p-6">
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Header */}
-        <div className="text-center">
-          <h1 className={`text-3xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-            Upload & Predict
-          </h1>
-          <p className={`max-w-2xl mx-auto ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-            Upload your video files to get AI-powered predictions and analysis. 
-            Our advanced algorithms will process your content and provide detailed insights.
-          </p>
+        <div className={`rounded-2xl p-8 shadow-sm border transition-colors ${
+          darkMode 
+            ? 'bg-gray-800 border-gray-700' 
+            : 'bg-white border-gray-100'
+        }`}>
+          <div className="flex items-center justify-between">
+            <div className="text-center flex-1">
+              <h1 className={`text-3xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                Upload & Predict
+              </h1>
+              <p className={`max-w-2xl mx-auto ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                Upload your video files to get AI-powered predictions and analysis. 
+                Our advanced algorithms will process your content and provide detailed insights.
+              </p>
+            </div>
+            <div className={`p-4 rounded-xl ${darkMode ? 'bg-blue-900/30' : 'bg-blue-50'}`}>
+              <Upload className={`w-8 h-8 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+            </div>
+          </div>
         </div>
 
         {/* Upload Section */}
@@ -991,35 +1002,46 @@ const ResultsPage = () => {
 
   return (
     <div className="p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
-          <div>
-            <h1 className={`text-3xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-              Prediction Results
-            </h1>
-            <p className={darkMode ? 'text-gray-400' : 'text-gray-600'}>
-              View and analyze your AI prediction results
-            </p>
-          </div>
-          
-          {/* Filter Buttons */}
-          <div className="flex gap-2 mt-4 md:mt-0">
-            {['all', 'completed', 'processing'].map((filterOption) => (
-              <button
-                key={filterOption}
-                onClick={() => setFilter(filterOption)}
-                className={`px-4 py-2 rounded-lg font-medium transition-all capitalize ${
-                  filter === filterOption
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : darkMode
-                      ? 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-600'
-                      : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
-                }`}
-              >
-                {filterOption}
-              </button>
-            ))}
+        <div className={`rounded-2xl p-8 shadow-sm border transition-colors ${
+          darkMode 
+            ? 'bg-gray-800 border-gray-700' 
+            : 'bg-white border-gray-100'
+        }`}>
+          <div className="flex flex-col md:flex-row md:items-center justify-between">
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className={`text-3xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                  Prediction Results
+                </h1>
+                <p className={darkMode ? 'text-gray-400' : 'text-gray-600'}>
+                  View and analyze your AI prediction results
+                </p>
+              </div>
+              <div className={`p-4 rounded-xl ${darkMode ? 'bg-blue-900/30' : 'bg-blue-50'}`}>
+                <BarChart3 className={`w-8 h-8 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+              </div>
+            </div>
+            
+            {/* Filter Buttons */}
+            <div className="flex gap-2 mt-6 md:mt-0">
+              {['all', 'completed', 'processing'].map((filterOption) => (
+                <button
+                  key={filterOption}
+                  onClick={() => setFilter(filterOption)}
+                  className={`px-4 py-2 rounded-lg font-medium transition-all capitalize ${
+                    filter === filterOption
+                      ? 'bg-blue-600 text-white shadow-lg'
+                      : darkMode
+                        ? 'bg-gray-700 text-gray-300 hover:bg-gray-600 border border-gray-600'
+                        : 'bg-gray-50 text-gray-600 hover:bg-gray-100 border border-gray-200'
+                  }`}
+                >
+                  {filterOption}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -1388,15 +1410,26 @@ const HistoryPage = () => {
 
   return (
     <div className="p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
-        <div className="mb-6">
-          <h1 className={`text-3xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-            Prediction History
-          </h1>
-          <p className={darkMode ? 'text-gray-400' : 'text-gray-600'}>
-            Track and manage all your video prediction history
-          </p>
+        <div className={`rounded-2xl p-8 shadow-sm border transition-colors ${
+          darkMode 
+            ? 'bg-gray-800 border-gray-700' 
+            : 'bg-white border-gray-100'
+        }`}>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className={`text-3xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                Prediction History
+              </h1>
+              <p className={darkMode ? 'text-gray-400' : 'text-gray-600'}>
+                Track and manage all your video prediction history
+              </p>
+            </div>
+            <div className={`p-4 rounded-xl ${darkMode ? 'bg-blue-900/30' : 'bg-blue-50'}`}>
+              <History className={`w-8 h-8 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+            </div>
+          </div>
         </div>
 
         {/* Search and Filters */}
@@ -1739,15 +1772,26 @@ const ProfilePage = () => {
 
   return (
     <div className="p-6">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto space-y-6">
         {/* Header */}
-        <div className="mb-6">
-          <h1 className={`text-3xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-            Profile Settings
-          </h1>
-          <p className={darkMode ? 'text-gray-400' : 'text-gray-600'}>
-            Manage your account information and preferences
-          </p>
+        <div className={`rounded-2xl p-8 shadow-sm border transition-colors ${
+          darkMode 
+            ? 'bg-gray-800 border-gray-700' 
+            : 'bg-white border-gray-100'
+        }`}>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className={`text-3xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                Profile Settings
+              </h1>
+              <p className={darkMode ? 'text-gray-400' : 'text-gray-600'}>
+                Manage your account information and preferences
+              </p>
+            </div>
+            <div className={`p-4 rounded-xl ${darkMode ? 'bg-blue-900/30' : 'bg-blue-50'}`}>
+              <User className={`w-8 h-8 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
