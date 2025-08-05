@@ -112,13 +112,36 @@ User account management:
 
 ```
 src/
-├── App.tsx                 # Main application component
-├── main.tsx               # Application entry point
-├── index.css              # Global styles
-├── vite-env.d.ts          # Vite type declarations
-└── assets/                # Static assets
-    └── react.svg
+├── App.tsx                      # Main application component with routing logic
+├── App.css                      # Application-specific styles
+├── main.tsx                     # Application entry point
+├── index.css                    # Global styles and Tailwind imports
+├── vite-env.d.ts               # Vite type declarations
+├── assets/                      # Static assets
+│   └── react.svg
+└── components/                  # Modular component architecture
+    ├── AppContext.tsx           # Global state management with React Context
+    ├── LoadingOverlay.tsx       # Loading spinner overlay component
+    ├── Navbar.tsx               # Top navigation with user menu & theme toggle
+    ├── Sidebar.tsx              # Left sidebar navigation with menu items
+    ├── Toast.tsx                # Toast notification system
+    └── pages/                   # Page-specific components
+        ├── DashboardPage.tsx    # Main dashboard with analytics
+        ├── UploadPage.tsx       # Video upload interface
+        ├── ResultsPage.tsx      # Prediction results management
+        ├── HistoryPage.tsx      # Prediction history browser
+        └── ProfilePage.tsx      # User profile management
 ```
+
+### 🎯 Modular Architecture Benefits
+
+- **Maintainability**: Each component is isolated and easy to modify
+- **Reusability**: Components can be imported and used across different parts of the app
+- **Testability**: Individual components can be tested independently
+- **Scalability**: New features can be added as separate components
+- **Code Organization**: Clear separation of concerns and logical file structure
+- **Team Collaboration**: Multiple developers can work on different components simultaneously
+- **Debugging**: Issues can be quickly traced to specific component files
 
 ## 🔧 Configuration
 
@@ -141,17 +164,36 @@ The project uses Tailwind CSS v4.1 with custom configurations for:
 
 ## 🌟 Key Components
 
-### Global State Management
-- **AppContext**: Centralized state management using React Context
-- **Theme Management**: Dark/light mode with localStorage persistence
-- **Notification System**: Toast notifications for user feedback
-- **Loading States**: Global loading overlay for async operations
+### Architecture Overview
+The application follows a modular component architecture with clear separation of concerns:
 
-### Core Features
-- **File Upload**: Drag-and-drop with progress tracking
-- **Data Visualization**: Progress bars, confidence scores, statistics
-- **Modal System**: Detailed views and confirmations
-- **Responsive Navigation**: Sidebar with mobile-first design
+### Global State Management
+- **AppContext.tsx**: Centralized state management using React Context API
+  - User authentication state
+  - Dark/light theme management with localStorage persistence
+  - Toast notification system
+  - Prediction data management
+  - Loading state coordination
+
+### Core UI Components
+- **Navbar.tsx**: Top navigation bar with user dropdown, theme toggle, and notifications
+- **Sidebar.tsx**: Responsive left sidebar with navigation menu and quick stats
+- **Toast.tsx**: Notification system with different types (success, error, warning, info)
+- **LoadingOverlay.tsx**: Global loading spinner with progress indication
+
+### Page Components
+- **DashboardPage.tsx**: Analytics dashboard with statistics cards and recent predictions
+- **UploadPage.tsx**: Drag-and-drop video upload interface with progress tracking
+- **ResultsPage.tsx**: Prediction results grid with filtering and detailed modal views
+- **HistoryPage.tsx**: Complete prediction history with search and filter capabilities
+- **ProfilePage.tsx**: User profile management with editable information and statistics
+
+### Design Patterns
+- **Component Composition**: Each component is self-contained and reusable
+- **Props Interface**: TypeScript interfaces for type-safe component communication
+- **Context Pattern**: Global state shared across components without prop drilling
+- **Conditional Rendering**: Dynamic UI based on application state
+- **Responsive Design**: Mobile-first approach with Tailwind CSS utilities
 
 ## 🎯 Usage
 
@@ -162,16 +204,67 @@ The project uses Tailwind CSS v4.1 with custom configurations for:
 5. **Customize Profile**: Update your profile information and preferences
 6. **Toggle Theme**: Switch between light and dark modes
 
+## 🛠 Development Workflow
+
+### Working with the Modular Structure
+
+1. **Adding New Components**: Create new components in the appropriate directory
+   ```bash
+   # For UI components
+   src/components/YourComponent.tsx
+   
+   # For page components
+   src/components/pages/YourPage.tsx
+   ```
+
+2. **Importing Components**: Use relative imports based on file location
+   ```typescript
+   // From pages to components
+   import { Toast } from '../Toast';
+   
+   // From App.tsx to components
+   import { DashboardPage } from './components/pages/DashboardPage';
+   ```
+
+3. **State Management**: Use the AppContext for global state
+   ```typescript
+   import { useApp } from './components/AppContext';
+   const { user, darkMode, addNotification } = useApp();
+   ```
+
+4. **Component Guidelines**:
+   - Each component should be self-contained
+   - Use TypeScript interfaces for props
+   - Follow the established naming conventions
+   - Include proper JSDoc comments for complex components
+
 ## 🔮 Future Enhancements
 
+### Backend Integration
 - Real backend API integration
-- Video preview functionality
-- Batch upload support
-- Advanced filtering and sorting
-- Export capabilities
-- User authentication
-- Team collaboration features
-- Advanced analytics dashboard
+- Authentication and authorization system
+- Database integration for persistent storage
+
+### Feature Enhancements
+- Video preview functionality with player controls
+- Batch upload support for multiple files
+- Advanced filtering and sorting options
+- Export capabilities (CSV, JSON, PDF reports)
+- Real-time collaboration features
+
+### Technical Improvements
+- Component library extraction for reusability
+- Automated testing suite (unit, integration, e2e)
+- Performance optimizations and code splitting
+- Progressive Web App (PWA) capabilities
+- Internationalization (i18n) support
+
+### UI/UX Enhancements
+- Advanced analytics dashboard with charts
+- Customizable dashboard widgets
+- Improved mobile experience
+- Accessibility improvements (WCAG compliance)
+- Animation and micro-interactions
 
 ## 🤝 Contributing
 
@@ -196,6 +289,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Tailwind CSS for the utility-first CSS framework
 - Lucide React for the beautiful icons
 - Vite for the fast build tool
+- TypeScript for enhanced developer experience
+
+## 📝 Recent Updates
+
+**v2.0.0 - Modular Architecture Refactor**
+- Broke down monolithic `App.tsx` (2000+ lines) into modular components
+- Improved code organization and maintainability
+- Enhanced developer experience with better file structure
+- Maintained all existing functionality while improving code quality
 
 ---
 
